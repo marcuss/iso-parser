@@ -1,5 +1,7 @@
 package co.marcuss.iso8583;
 
+import java.io.UnsupportedEncodingException;
+
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -78,4 +80,22 @@ public class ParserTest {
         JPosParser.make("src/main/resources/ISOMSG.xml")
         .parse("InvalidMessage");
     }
+    
+    @Test
+    public void notReallyATest_ShowsThe1stBitMapsFields() throws UnsupportedEncodingException{
+        String firstBitmap = DATA.substring(4,16);
+        System.out.println("First Bitmap as String: " + firstBitmap);
+        System.out.println("First Bitmap as Bytes: ");
+        long firstBitmapLong = Long.parseLong(firstBitmap, 16);
+        String binaryString = Long.toBinaryString(firstBitmapLong);
+        System.out.println(binaryString);
+        char[] charArrayBinaryString = binaryString.toCharArray();
+        for (int i = 0; i < charArrayBinaryString.length; i++) {
+            if(charArrayBinaryString[i]=='1'){
+                System.out.println("Field: "+i);
+            }
+        }
+        
+    }
+
 }
