@@ -31,10 +31,32 @@ public class ParserTest {
         assertThat(message, allOf(any(Message.class), notNullValue()));
         assertThat(message.getMti(), equalTo("0210"));
         assertThat(message.getBitmaps().size(), equalTo(13));
+        System.out.println(message);
+    }
+    
+    @Test
+    public void validToStringMessageFormat() {
+        Message message = JPosParser.make("src/main/resources/ISOMSG.xml")
+                .parse(this.DATA);
+        assertThat(message.toString(), startsWith(
+                  "MTI : 0210\n"
+                + "Field-32: 00301000000\n" 
+                + "Field-3: 100000\n"
+                + "Field-4: 000000001700\n" 
+                + "Field-7: 0108144654\n"
+                + "Field-39: N3\n" 
+                + "Field-41: 99915444\n"
+                + "Field-42: 303500019991544\n" 
+                + "Field-11: 694216\n"
+                + "Field-12: 144657\n" 
+                + "Field-13: 0108\n" 
+                + "Field-49: 986\n"
+                + "Field-62:  Invalid response!!!\n" 
+                + "Field-127: 000095492"));
     }
 
     @Test
-    public void parserCreation_JParserSuccess() {
+    public void parserCreation_JposParserSuccess() {
         assertThat(
                 JPosParser.make("src/main/resources/ISOMSG.xml"),
                 any(Parser.class)
