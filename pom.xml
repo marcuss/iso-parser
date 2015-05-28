@@ -4,7 +4,8 @@
 	<groupId>iso-message-parser</groupId>
 	<artifactId>iso-message-parser</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<build>
+
+X	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
